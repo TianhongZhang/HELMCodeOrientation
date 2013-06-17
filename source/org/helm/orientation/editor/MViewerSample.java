@@ -27,7 +27,7 @@ public class MViewerSample extends JFrame {
         setPreferredSize(new Dimension(800, 600));
         
         //create viewer
-        viewer = new MacroMoleculeViewer(true);
+        viewer = new MacroMoleculeViewer(false);
 
         //create buttons
         JPanel buttonPanel = createButtonPanel();
@@ -49,6 +49,8 @@ public class MViewerSample extends JFrame {
                 String notation = JOptionPane.showInputDialog(null, "Please enter HELM notation here");
                 if (notation != null && notation.length() > 0) {
                     viewer.setNotation(notation);
+                } else {
+                    viewer.setNotation("");
                 }
             }
         });

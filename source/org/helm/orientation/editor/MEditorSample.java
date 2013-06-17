@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -36,7 +38,14 @@ public class MEditorSample extends JFrame {
         setLayout(new BorderLayout());
         getContentPane().add(BorderLayout.CENTER, editor.getContentComponent());
         getContentPane().add(buttonPanel, BorderLayout.SOUTH);
-               
+             
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                System.exit(1);
+            }
+        });
+        
         pack();
     }
 
@@ -52,6 +61,8 @@ public class MEditorSample extends JFrame {
                 String notation = JOptionPane.showInputDialog(null, "Please enter HELM notation here");
                 if (notation != null && notation.length() > 0) {
                     editor.setNotation(notation);
+                } else {
+                    editor.setNotation("");
                 }
             }
         });

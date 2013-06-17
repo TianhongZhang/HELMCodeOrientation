@@ -44,7 +44,7 @@ public class ComplexNotationParserSample {
             getMonomerCount(notation);
             getCanonicalNotation(notation);
             getCanonicalSmiles(notation);
-            getMoleculeInfo(notation);           
+            getMoleculeInfo(notation);
             getNucleotideSequence(notation);
 
             //Invalid Notation with unknown Monomer xyz
@@ -73,18 +73,18 @@ public class ComplexNotationParserSample {
         System.out.println("*********************/");
     }
 
-    private static void getCanonicalSmiles(String notation) {
+    private static void getMonomerCount(String notation) {
         System.out.println("/*********************");
         try {
-            System.out.println("Testing getCanonicalSmiles for: " + notation);
-            System.out.println("Canonical SMILES: " + ComplexNotationParser.getComplexPolymerCanonicalSmiles(notation));
+            System.out.println("Testing getMonomerCount for: " + notation);
+            System.out.println("Monomer Count: " + ComplexNotationParser.getTotalMonomerCount(notation));
             System.out.println("*********************");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         System.out.println("*********************/");
     }
-    
+
     private static void getCanonicalNotation(String notation) {
         System.out.println("/*********************");
         try {
@@ -97,11 +97,11 @@ public class ComplexNotationParserSample {
         System.out.println("*********************/");
     }
 
-    private static void getMonomerCount(String notation) {
+    private static void getCanonicalSmiles(String notation) {
         System.out.println("/*********************");
         try {
-            System.out.println("Testing getMonomerCount for: " + notation);
-            System.out.println("Monomer Count: " + ComplexNotationParser.getTotalMonomerCount(notation));
+            System.out.println("Testing getCanonicalSmiles for: " + notation);
+            System.out.println("Canonical SMILES: " + ComplexNotationParser.getComplexPolymerCanonicalSmiles(notation));
             System.out.println("*********************");
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -122,37 +122,37 @@ public class ComplexNotationParserSample {
         }
         System.out.println("*********************/");
     }
-    
+
     private static void getNucleotideSequence(String notation) {
         System.out.println("/*********************");
         try {
             System.out.println("Testing getNucleotideSequence for: " + notation);
             List<PolymerNode> polymers = ComplexNotationParser.getPolymerNodeList(notation);
             for (PolymerNode polymer : polymers) {
-                if (polymer.getType().endsWith(Monomer.NUCLIEC_ACID_POLYMER_TYPE)) {
+                if (polymer.getType().equals(Monomer.NUCLIEC_ACID_POLYMER_TYPE)) {
                     String simpleNotation = polymer.getLabel();
                     String seq = SimpleNotationParser.getNucleotideSequence(simpleNotation);
                     System.out.println("Nucleotide Sequence: " + seq);
                 }
-            }          
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         System.out.println("*********************/");
     }
-    
+
     private static void getAminoAcidSequence(String notation) {
         System.out.println("/*********************");
         try {
             System.out.println("Testing getAminoAcidSequence for: " + notation);
             List<PolymerNode> polymers = ComplexNotationParser.getPolymerNodeList(notation);
             for (PolymerNode polymer : polymers) {
-                if (polymer.getType().endsWith(Monomer.PEPTIDE_POLYMER_TYPE)) {
+                if (polymer.getType().equals(Monomer.PEPTIDE_POLYMER_TYPE)) {
                     String simpleNotation = polymer.getLabel();
                     String seq = SimpleNotationParser.getPeptideSequence(simpleNotation);
                     System.out.println("AA Sequence: " + seq);
                 }
-            }          
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
